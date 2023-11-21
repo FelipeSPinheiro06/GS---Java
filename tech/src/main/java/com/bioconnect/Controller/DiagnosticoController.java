@@ -11,7 +11,7 @@ import com.bioconnect.model.Diagnostico;
 @RequestMapping("/diagnostico")
 public class DiagnosticoController {
 
-    @PostMapping("/fazerDiagnostico")
+    @PostMapping("/fazerdiagnostico")
     public ResponseEntity<Diagnostico> fazerDiagnostico(@RequestBody DadosUsuarioController dadosUsuarioController, DadosUsuario dadosUsuario) {
     	// Chama o método para calcular o risco no controlador de dados do usuário
         String riscoCardiaco = dadosUsuarioController.calcularRisco(dadosUsuario);

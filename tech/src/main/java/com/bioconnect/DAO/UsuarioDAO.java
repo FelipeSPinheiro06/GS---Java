@@ -1,6 +1,7 @@
 package com.bioconnect.DAO;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import com.bioconnect.model.Usuario;
@@ -18,10 +19,12 @@ import java.util.List;
 public class UsuarioDAO {
 
     private final DataSource dataSource;
+    private final JdbcTemplate jdbcTemplate;
 
     @Autowired
-    public UsuarioDAO(DataSource dataSource) {
+    public UsuarioDAO(DataSource dataSource, JdbcTemplate jdbcTemplate) {
         this.dataSource = dataSource;
+        this.jdbcTemplate = jdbcTemplate;
     }
 
     @PostMapping
@@ -56,6 +59,11 @@ public class UsuarioDAO {
         return userList;
     }
 
+    public Usuario obterPorId(int id) {
+        String query = "SELECT * FROM usuarios WHERE id = ?";
+        return jdbcTemplate.queryForObject(query, new UsuarioRowMapper(), id);
+    }
+    
     @PutMapping("/{id}")
     public void alterar(@PathVariable int id, @RequestBody Usuario user) throws SQLException {
         try (Connection connection = dataSource.getConnection()) {
@@ -79,4 +87,7 @@ public class UsuarioDAO {
             }
         }
     }
+    
+    
+    
 }
