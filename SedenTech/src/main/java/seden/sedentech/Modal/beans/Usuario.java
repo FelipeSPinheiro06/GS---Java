@@ -3,8 +3,8 @@ package seden.sedentech.Modal.beans;
 import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import lombok.*;
-import seden.sedentech.Modal.repository.request.RequestUsuario;
-import seden.sedentech.Modal.repository.request.ResponseUsuario;
+import seden.sedentech.Modal.repository.request.Usuario.RequestUsuario;
+import seden.sedentech.Modal.repository.request.Usuario.ResponseUsuario;
 
 @Entity
 @Getter @Setter

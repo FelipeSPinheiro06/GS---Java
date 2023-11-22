@@ -1,4 +1,4 @@
-package seden.sedentech.Modal.repository.request;
+package seden.sedentech.Modal.repository.request.Usuario;
 
 import jakarta.validation.constraints.NotBlank;
 

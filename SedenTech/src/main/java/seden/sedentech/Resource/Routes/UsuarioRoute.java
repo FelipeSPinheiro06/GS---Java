@@ -8,8 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import seden.sedentech.Modal.beans.Usuario;
 import seden.sedentech.Modal.repository.Interface.Iusuario;
-import seden.sedentech.Modal.repository.request.RequestUsuario;
-import seden.sedentech.Modal.repository.request.ResponseUsuario;
+import seden.sedentech.Modal.repository.request.Usuario.RequestUsuario;
+import seden.sedentech.Modal.repository.request.Usuario.ResponseUsuario;
 
 import java.util.Optional;
 
