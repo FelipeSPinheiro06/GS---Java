@@ -14,7 +14,8 @@ import seden.sedentech.Modal.repository.request.Usuario.ResponseUsuario;
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @Table(name = "usuarios")
 public class Usuario {
-	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
 
@@ -27,11 +28,43 @@ public class Usuario {
     @Column(name = "senha")
     private String senha;
 
+    @Column(name = "idade")
+    private int idade;
+
+    @Column(name = "sexo")
+    private String sexo;
+
+    @Column(name = "usaAlcool")
+    private boolean usaAlcool;
+
+    @Column(name = "fuma")
+    private boolean e_fumante;
+
+    @Column(name = "freqCardiaca")
+    private int freqCardiaca;
+
+    @Column(name = "diabetes")
+    private boolean possuiDiabetes;
+
+    @Column(name = "obesidade")
+    private boolean possuiObesidade;
+
+    @Column(name = "pratica_esporte")
+    private boolean praticaEsporte;
+
 
     public Usuario (RequestUsuario requestUsuario){
         this.username = requestUsuario.username();
         this.email = requestUsuario.email();
         this.senha = requestUsuario.senha();
+        this.idade = requestUsuario.idade();
+        this.sexo = requestUsuario.sexo();
+        this.usaAlcool = requestUsuario.usaAlcool();
+        this.e_fumante = requestUsuario.e_fumante();
+        this.freqCardiaca = requestUsuario.freqCardiaca();
+        this.possuiDiabetes = requestUsuario.possuiDiabetes();
+        this.possuiObesidade = requestUsuario.possuiObesidade();
+        this.praticaEsporte = requestUsuario.praticaEsporte();
     }
 
     public Usuario upUsuario (ResponseUsuario responseUsuario){
