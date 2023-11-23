@@ -1,10 +1,10 @@
-package seden.sedentech.Modal.beans;
+package seden.sedentech.Model.beans;
 
 import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import lombok.*;
-import seden.sedentech.Modal.repository.request.Usuario.RequestUsuario;
-import seden.sedentech.Modal.repository.request.Usuario.ResponseUsuario;
+import seden.sedentech.Model.repository.request.Usuario.RequestUsuario;
+import seden.sedentech.Model.repository.request.Usuario.ResponseUsuario;
 
 @Entity
 @Getter @Setter
@@ -51,6 +51,13 @@ public class Usuario {
 
     @Column(name = "pratica_esporte")
     private boolean praticaEsporte;
+
+    @JoinColumn(name = "usuario")
+    @OneToOne
+    private Usuario usuario;
+
+    @OneToOne(mappedBy = "model", fetch = FetchType.EAGER)
+    private Diagnostico diagnostico;
 
 
     public Usuario (RequestUsuario requestUsuario){

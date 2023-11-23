@@ -1,7 +1,7 @@
-package seden.sedentech.Modal.BO;
+package seden.sedentech.Controller.BO;
 
 import org.springframework.stereotype.Service;
-import seden.sedentech.Modal.beans.Usuario;
+import seden.sedentech.Model.beans.Usuario;
 
 @Service
 public class UsuarioBO {

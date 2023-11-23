@@ -1,13 +1,13 @@
-package seden.sedentech.Modal.BO;
+package seden.sedentech.Controller.BO;
 
 import org.springframework.stereotype.Service;
-import seden.sedentech.Modal.beans.Diagnostico;
-import seden.sedentech.Modal.beans.Usuario;
+import seden.sedentech.Model.beans.Diagnostico;
+import seden.sedentech.Model.beans.Usuario;
 
 @Service
 public class DiagnosticoBO {
 
-    public Diagnostico fazerDiagnostico(Usuario usuario) {
+    public String fazerDiagnostico(Usuario usuario) {
 
         // Chama o método para calcular o risco no controlador de dados do usuário
         String riscoCardiaco = UsuarioBO.calcularRisco(usuario);
@@ -18,6 +18,6 @@ public class DiagnosticoBO {
 
         // Adiciona lógica adicional de diagnóstico, se necessário
 
-        return new Diagnostico();
+        return diagnostico.getRiscoCardiaco();
     }
 }

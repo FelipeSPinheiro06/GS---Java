@@ -6,12 +6,12 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import seden.sedentech.Modal.beans.Resultado;
-import seden.sedentech.Modal.beans.Usuario;
-import seden.sedentech.Modal.repository.Interface.Iresultado;
-import seden.sedentech.Modal.repository.request.Resultado.RequestResultado;
-import seden.sedentech.Modal.repository.request.Resultado.ResponseResultado;
-import seden.sedentech.Modal.repository.request.Usuario.RequestUsuario;
+import seden.sedentech.Controller.BO.DiagnosticoBO;
+import seden.sedentech.Controller.BO.UsuarioBO;
+import seden.sedentech.Model.beans.Resultado;
+import seden.sedentech.Model.repository.Interface.Iresultado;
+import seden.sedentech.Model.repository.request.Resultado.RequestResultado;
+import seden.sedentech.Model.repository.request.Resultado.ResponseResultado;
 
 import java.util.Optional;
 
@@ -20,6 +20,8 @@ import java.util.Optional;
 public class ResultadoRoute {
     @Autowired
     private Iresultado iresultado;
+
+    private UsuarioBO usuarioBO;
 
     @Transactional
     @GetMapping
@@ -42,7 +44,10 @@ public class ResultadoRoute {
     public ResponseEntity UpdateResultados(@RequestBody @Valid ResponseResultado upData){
         Optional<Resultado> optionalResultado = iresultado.findById(String.valueOf(upData.id()));
 
-        if(!optionalResultado.isPresent()) throw new EntityNotFoundException();
+        if(!optionalResultado.isPresent()) {
+            throw new EntityNotFoundException();
+        }
+
 
         Resultado upClient = optionalResultado.get();
         upClient.upResultado(upData);

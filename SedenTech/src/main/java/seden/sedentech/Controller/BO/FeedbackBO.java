@@ -1,8 +1,8 @@
-package seden.sedentech.Modal.BO;
+package seden.sedentech.Controller.BO;
 
 import org.springframework.stereotype.Service;
-import seden.sedentech.Modal.beans.Diagnostico;
-import seden.sedentech.Modal.beans.Feedback;
+import seden.sedentech.Model.beans.Diagnostico;
+import seden.sedentech.Model.beans.Feedback;
 
 @Service
 public class FeedbackBO {

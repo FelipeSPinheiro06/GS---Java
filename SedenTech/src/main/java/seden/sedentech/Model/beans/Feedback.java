@@ -1,4 +1,4 @@
-package seden.sedentech.Modal.beans;
+package seden.sedentech.Model.beans;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -22,6 +22,9 @@ public class Feedback {
 
     @Column(name = "precisa_consulta")
     private boolean consultarMedico;
+
+    @Column(name = "mensagem_feedback")
+    private String mensagem;
 
     @PrimaryKeyJoinColumn(name = "feedbacks")
     @OneToOne

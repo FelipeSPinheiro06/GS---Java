@@ -6,10 +6,11 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import seden.sedentech.Modal.beans.Usuario;
-import seden.sedentech.Modal.repository.Interface.Iusuario;
-import seden.sedentech.Modal.repository.request.Usuario.RequestUsuario;
-import seden.sedentech.Modal.repository.request.Usuario.ResponseUsuario;
+import seden.sedentech.Controller.BO.DiagnosticoBO;
+import seden.sedentech.Model.beans.Usuario;
+import seden.sedentech.Model.repository.Interface.Iusuario;
+import seden.sedentech.Model.repository.request.Usuario.RequestUsuario;
+import seden.sedentech.Model.repository.request.Usuario.ResponseUsuario;
 
 import java.util.Optional;
 
@@ -30,6 +31,13 @@ public class UsuarioRoute {
     @PostMapping
     public ResponseEntity RegisterUsuarios(@RequestBody @Valid RequestUsuario data){
         Usuario newUsuario = new Usuario(data);
+
+        DiagnosticoBO diagnosticoBO = new DiagnosticoBO();
+        diagnosticoBO.fazerDiagnostico(newUsuario);
+
+        newUsuario.setDiagnostico(newUsuario.getDiagnostico());
+
+
         iusuario.save(newUsuario);
 
         return ResponseEntity.ok(newUsuario);
@@ -44,6 +52,12 @@ public class UsuarioRoute {
 
 
         Usuario upClient = optionalUsuario.get();
+
+
+
+
+
+
         upClient.upUsuario(upData);
 
         return ResponseEntity.ok(upClient);

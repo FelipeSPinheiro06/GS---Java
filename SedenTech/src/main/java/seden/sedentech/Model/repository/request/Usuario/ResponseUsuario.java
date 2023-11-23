@@ -1,7 +1,7 @@
-package seden.sedentech.Modal.repository.request.Usuario;
+package seden.sedentech.Model.repository.request.Usuario;
 
 import jakarta.validation.constraints.NotNull;
-import seden.sedentech.Modal.beans.Usuario;
+import seden.sedentech.Model.beans.Usuario;
 
 public record ResponseUsuario(
         @NotNull int id,
