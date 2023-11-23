@@ -8,7 +8,6 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(of = "id")
-@Table(name = "feedbacks")
 public class Feedback {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -52,11 +52,13 @@ public class Usuario {
     @Column(name = "pratica_esporte")
     private boolean praticaEsporte;
 
-    @JoinColumn(name = "usuario")
+    /*@JoinColumn(name = "usuario")
     @OneToOne
-    private Usuario usuario;
+    private Usuario usuario;*/
 
-    @OneToOne(mappedBy = "model", fetch = FetchType.EAGER)
+
+    @JoinColumn(name = "diagnostico")
+    @OneToOne
     private Diagnostico diagnostico;
 
 

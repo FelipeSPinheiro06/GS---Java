@@ -8,14 +8,17 @@ public record ResponseResultado (
 
         String diagnostico,
 
-        String feedback
+        String feedback,
+
+        int usuario_id
 
 ){
     public ResponseResultado(Resultado resultado){
         this(
                 resultado.getId(),
                 resultado.getResultado_diagnostico(),
-                resultado.getFeedback_mensagem()
+                resultado.getFeedback_mensagem(),
+                resultado.getUsuario_id()
         );
     }
 }

@@ -1,4 +1,4 @@
-package seden.sedentech.Controller.BO;
+package seden.sedentech.Model.BO;
 
 import org.springframework.stereotype.Service;
 import seden.sedentech.Model.beans.Usuario;

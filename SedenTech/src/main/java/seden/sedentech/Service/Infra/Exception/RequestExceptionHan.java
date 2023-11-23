@@ -39,12 +39,12 @@ public class RequestExceptionHan {
         return errorMap;
     }
 
-    /*@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    @ExceptionHandler(RequestExceptionHan.class) // Tratamento genérico para outras exceções
-    public Map<String, String> handle500(RequestExceptionHan requestExceptionHan) {
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ExceptionHandler(InternalError.class) // Tratamento genérico para outras exceções
+    public Map<String, String> handle500(InternalError internalError) {
         Map<String, String> errorMap = new HashMap<>();
         errorMap.put("error", "Erro 500: Ocorreu um erro interno no servidor.");
-        errorMap.put("details", requestExceptionHan.getMessage()); // Pode ser removido ou personalizado conforme necessário
+        errorMap.put("details", internalError.getMessage()); // Pode ser removido ou personalizado conforme necessário
         return errorMap;
-    }*/
+    }
 }

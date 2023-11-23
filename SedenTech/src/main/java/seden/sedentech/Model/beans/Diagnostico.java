@@ -8,7 +8,6 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
-@Table(name = "diagnosticos")
 public class Diagnostico {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -20,7 +19,7 @@ public class Diagnostico {
     @OneToOne
     private Resultado resultado;
 
+    @JoinColumn(name = "usuario")
     @OneToOne
-    @JoinColumn(name = "diagnostico", referencedColumnName = "diagnostico")
-    private Usuario usuario;
+    private Usuario usuario_diagnostico;
 }

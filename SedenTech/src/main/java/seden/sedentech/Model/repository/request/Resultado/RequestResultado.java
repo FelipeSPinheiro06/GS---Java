@@ -1,7 +1,8 @@
 package seden.sedentech.Model.repository.request.Resultado;
 
+import jakarta.validation.constraints.NotBlank;
+
 public record RequestResultado (
-         int id,
-         String diagnostico,
-         String feedback
+         @NotBlank int id,
+         int usuario_id
 ){ }

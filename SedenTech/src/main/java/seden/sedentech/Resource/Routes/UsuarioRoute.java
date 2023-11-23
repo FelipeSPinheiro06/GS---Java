@@ -6,7 +6,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import seden.sedentech.Controller.BO.DiagnosticoBO;
+import seden.sedentech.Model.BO.DiagnosticoBO;
 import seden.sedentech.Model.beans.Usuario;
 import seden.sedentech.Model.repository.Interface.Iusuario;
 import seden.sedentech.Model.repository.request.Usuario.RequestUsuario;
@@ -29,7 +29,7 @@ public class UsuarioRoute {
 
     @Transactional
     @PostMapping
-    public ResponseEntity RegisterUsuarios(@RequestBody @Valid RequestUsuario data){
+    public ResponseEntity RegisterUsuarios(@RequestBody RequestUsuario data){
         Usuario newUsuario = new Usuario(data);
 
         DiagnosticoBO diagnosticoBO = new DiagnosticoBO();
@@ -45,19 +45,13 @@ public class UsuarioRoute {
 
     @Transactional
     @PutMapping
-    public ResponseEntity UpUsuario(@RequestBody @Valid ResponseUsuario upData){
+    public ResponseEntity UpUsuario(@RequestBody ResponseUsuario upData){
         Optional<Usuario> optionalUsuario = iusuario.findById(String.valueOf(upData.id()));
 
         if(!optionalUsuario.isPresent()) throw new EntityNotFoundException();
 
 
         Usuario upClient = optionalUsuario.get();
-
-
-
-
-
-
         upClient.upUsuario(upData);
 
         return ResponseEntity.ok(upClient);

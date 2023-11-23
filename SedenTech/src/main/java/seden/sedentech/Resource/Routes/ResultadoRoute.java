@@ -6,13 +6,14 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import seden.sedentech.Controller.BO.DiagnosticoBO;
-import seden.sedentech.Controller.BO.UsuarioBO;
+import seden.sedentech.Controller.ProjectController;
+import seden.sedentech.Model.BO.UsuarioBO;
 import seden.sedentech.Model.beans.Resultado;
 import seden.sedentech.Model.repository.Interface.Iresultado;
 import seden.sedentech.Model.repository.request.Resultado.RequestResultado;
 import seden.sedentech.Model.repository.request.Resultado.ResponseResultado;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 @RestController
@@ -21,7 +22,8 @@ public class ResultadoRoute {
     @Autowired
     private Iresultado iresultado;
 
-    private UsuarioBO usuarioBO;
+    @Autowired
+    private ProjectController pc;
 
     @Transactional
     @GetMapping
@@ -32,8 +34,14 @@ public class ResultadoRoute {
 
     @Transactional
     @PostMapping
-    public ResponseEntity RegisterResultados(@RequestBody @Valid RequestResultado data){
+    public ResponseEntity RegisterResultados(@RequestBody RequestResultado data){
         Resultado newResultado = new Resultado(data);
+        ArrayList<String> resultados = pc.getMensagens(data.usuario_id());
+
+        //Pegando o resultado do diagnóstico e o feedback gerado
+        newResultado.setResultado_diagnostico(resultados.get(0));
+        newResultado.setFeedback_mensagem(resultados.get(1));
+
         iresultado.save(newResultado);
 
         return ResponseEntity.ok(newResultado);
@@ -41,18 +49,17 @@ public class ResultadoRoute {
 
     @Transactional
     @PutMapping
-    public ResponseEntity UpdateResultados(@RequestBody @Valid ResponseResultado upData){
+    public ResponseEntity UpdateResultados(@RequestBody ResponseResultado upData){
         Optional<Resultado> optionalResultado = iresultado.findById(String.valueOf(upData.id()));
 
         if(!optionalResultado.isPresent()) {
             throw new EntityNotFoundException();
         }
 
+        Resultado newResultado = optionalResultado.get();
+        newResultado.upResultado(upData);
 
-        Resultado upClient = optionalResultado.get();
-        upClient.upResultado(upData);
-
-        return ResponseEntity.ok(upClient);
+        return ResponseEntity.ok(newResultado);
     }
 
     @Transactional

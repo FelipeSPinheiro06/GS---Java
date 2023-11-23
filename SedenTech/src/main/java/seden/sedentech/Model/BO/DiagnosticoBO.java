@@ -1,8 +1,9 @@
-package seden.sedentech.Controller.BO;
+package seden.sedentech.Model.BO;
 
 import org.springframework.stereotype.Service;
 import seden.sedentech.Model.beans.Diagnostico;
 import seden.sedentech.Model.beans.Usuario;
+
 
 @Service
 public class DiagnosticoBO {
@@ -18,6 +19,10 @@ public class DiagnosticoBO {
 
         // Adiciona lógica adicional de diagnóstico, se necessário
 
+
+
         return diagnostico.getRiscoCardiaco();
     }
+
+
 }

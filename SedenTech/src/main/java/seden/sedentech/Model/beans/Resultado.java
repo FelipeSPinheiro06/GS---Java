@@ -2,8 +2,11 @@ package seden.sedentech.Model.beans;
 
 import jakarta.persistence.*;
 import lombok.*;
+import seden.sedentech.Controller.ProjectController;
 import seden.sedentech.Model.repository.request.Resultado.RequestResultado;
 import seden.sedentech.Model.repository.request.Resultado.ResponseResultado;
+
+import java.util.ArrayList;
 
 @Entity
 @Getter
@@ -23,21 +26,11 @@ public class Resultado {
     @Column(name = "feedbacks")
     private String feedback_mensagem;
 
-    /*@PrimaryKeyJoinColumn(name = "feedbacks")
-    @OneToOne
-    private Feedback feedback;
-
-    @PrimaryKeyJoinColumn(name = "diagnosticos")
-    @OneToOne
-    private Diagnostico diagnostico;
-
     @PrimaryKeyJoinColumn(name = "usuario")
-    @OneToOne
-    private Usuario usuario;*/
+    private int usuario_id;
 
     public Resultado (RequestResultado requestResultado){
-        this.resultado_diagnostico = requestResultado.diagnostico();
-        this.feedback_mensagem = requestResultado.feedback();
+        this.usuario_id = requestResultado.usuario_id();
     }
 
     public Resultado upResultado (ResponseResultado responseResultado){
@@ -53,12 +46,12 @@ public class Resultado {
         return resultado;
     }
 
-    /*public void getRiscoCardiaco() {
-        UsuarioBO usuarioBO = new UsuarioBO();
-        resultado_diagnostico = usuarioBO.calcularRisco(usuario);
+    public void alocarResultados (){
+        ProjectController pc = new ProjectController();
+        ArrayList<String> resultados = pc.getMensagens(usuario_id);
+
+        resultado_diagnostico = resultados.get(0);
+        feedback_mensagem = resultados.get(1);
     }
-    public void getMensagemFeedback() {
-        DiagnosticoBO diagnosticoBO = new DiagnosticoBO();
-        feedback_mensagem = diagnosticoBO.fazerDiagnostico(usuario);
-    }*/
+
 }
